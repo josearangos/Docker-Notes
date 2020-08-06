@@ -1,0 +1,32 @@
+FROM nginx
+
+RUN useradd josearangos
+
+COPY frontend /usr/share/nginx/html
+
+ENV archivo docker
+
+WORKDIR /usr/share/nginx/html
+
+RUN echo "$archivo" > /usr/share/nginx/html/env.html
+
+EXPOSE 90
+
+LABEL version=2.3
+
+USER josearangos
+
+RUN echo "I'm $(whoami)" > /tmp/iam.html
+
+USER root
+
+RUN cp /tmp/iam.html /usr/share/nginx/html/docker.html
+
+VOLUME /var/log/nginx
+
+CMD nginx -g 'daemon off;'
+
+
+
+
+
