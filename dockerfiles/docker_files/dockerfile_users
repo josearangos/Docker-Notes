@@ -1,0 +1,7 @@
+FROM centos
+
+ENV Prueba 1234
+
+RUN useradd josearangos
+
+USER josearangos
